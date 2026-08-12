@@ -1,8 +1,12 @@
-# Security Docs — Top 25 Stacks
+# secure-coding-baseline
 
-A defensive reference library: one detailed markdown file per technology stack, each covering misconfigurations that can leak filesystem/source/data and the stack's common vulnerabilities. Every file follows the same structure: what it is, dangerous pattern, what leaks, fix, detection grep, and a checklist.
+> Secure defaults and detection checklists for every stack you ship — including the ones the AI wrote for you.
 
-These are defensive references for hardening systems you own. Do not use the patterns to attack systems you do not own.
+`secure-coding-baseline` is a defensive reference library of per-stack security baselines. It covers 25 technology stacks across backend frameworks (Node/Express, NestJS, Django, Flask, FastAPI, Spring Boot, Spring Security, Laravel, raw PHP, Rails, Go, Rust, ASP.NET Core), API/RPC layers (GraphQL, gRPC), frontend and full-stack (Next.js, React, Angular, Vue/Nuxt), and infrastructure/data (Docker, Kubernetes, Nginx, Redis, PostgreSQL, MongoDB) — plus a focused set of docs for the failure modes that recur in AI-generated, "vibe-coded" applications.
+
+Every doc follows the same structure: what the issue is, the dangerous pattern, what it leaks, the fix, a detection grep, and a checklist — so a reviewer can run the greps against a codebase and work through the fixes without reading prose.
+
+This is a hardening reference for systems you own, not an exploitation guide. Do not use the patterns to attack systems you do not own.
 
 ## Backend frameworks
 
@@ -55,3 +59,11 @@ These are defensive references for hardening systems you own. Do not use the pat
 - Run the detection greps in your repo.
 - Work through the checklist per file.
 - Cross-cutting concerns (secrets in git, logging, headers) repeat across files on purpose — they apply everywhere.
+- For AI-generated PRs, paste the review prompt from [doc 26](./26-vibe-coded-overview.md) into your review.
+
+## Suggested tooling to pair with these docs
+
+- Secret scanning: `gitleaks`, `trufflehog`, `detect-secrets`
+- Static analysis: `semgrep`, `eslint` security plugins, `bandit`, `brakeman`, `phpcs-security`
+- Dependency scanning: `npm audit`, `pip-audit`, `osv-scanner`, `trivy`, `snyk`
+- Pre-commit hooks for all of the above
